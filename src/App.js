@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import {
   motion,
   useViewportScroll,
@@ -42,6 +43,11 @@ const PortfolioLandingPage = () => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+    emailjs.send("service_9fv857x","template_r8dfspp",{
+    from_name: formData?.name ,
+    to_name: "Sekhar",
+    message: formData?.email+"\n"+formData?.message,
+    });
     alert("Thank you for your message! We will get back to you soon.");
     setFormData({ name: "", email: "", message: "" });
   };
